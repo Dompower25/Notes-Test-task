@@ -1,0 +1,11 @@
+.note {
+    width: 100%;
+    min-height: 70px;
+    resize: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 3px 7px;
+    font-size: 18px;
+    margin: 10px auto;
+    overflow: hidden;
+}
