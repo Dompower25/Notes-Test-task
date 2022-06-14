@@ -1,20 +1,21 @@
-import React from 'react';
-import MyButton from '../UI/MyButton';
-import MyInput from '../UI/MyInput';
+import React from "react";
+import MyButton from "../UI/MyButton";
+import MyInput from "../UI/MyInput";
 
-const NotesForm = ({ addNote, setbodyNote }) => {
+const NotesForm = ({ bodyNote, setbodyNote, addNewNote }) => {
   return (
     <div className="row_column">
       <form>
         <MyInput
+          value={bodyNote}
           onChange={(event) => setbodyNote(event.target.value)}
           type="text"
           placeholder="создайте заметку"
         ></MyInput>
-        <MyButton onClick={addNote}>добавить заметку</MyButton>
+        <MyButton onClick={addNewNote}>добавить заметку</MyButton>
       </form>
     </div>
   );
 };
 
-export default NotesForm
+export default NotesForm;

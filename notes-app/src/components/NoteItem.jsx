@@ -3,22 +3,29 @@ import MyButton from '../UI/MyButton';
 import st from '../style/NoteItem.module.css'
 
 
-function NoteItem({ bodyNote, teg, id, deleteNote, note, setNote }) {
+function NoteItem({ bodyNote, teg, id, deleteNote, note }) {
   const maxDate = new Date(id);
   const time = maxDate.toLocaleString();
   const [state, setState] = useState(bodyNote);
+
   return (
     <div className="note__box">
       <div className="note__content">
         <div>
           <textarea
-            disabled
+            disabled={true}
             onChange={(e) => setState(e.target.bodyNote)}
             className={st.note}
             value={state}
           ></textarea>
           <div className="tegs__box row">
-            <span className="tegSt">{teg}</span>
+            <div>
+              {teg.map((t) => (
+                <span className={note === t ? st.blue : "tegSt"} key={t}>
+                  {t + " "}
+                </span>
+              ))}
+            </div>
             <span>{time}</span>
           </div>
         </div>

@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import NoteItem from "./components/NoteItem";
 import NotesForm from "./components/NotesForm";
+import SearchInput from "./components/SearchInput";
 import "./style/App.css";
 
 function App() {
   const [note, setNote] = useState([]);
   const [bodyNote, setbodyNote] = useState("");
-
-  const removeNote = (id) => {
-    setNote(note.filter((i) => i.id !== id));
-  };
+  const [searchTeg, setSearchTeg] = useState("");
 
   const addTegs = (obj) => {
     const regex = /#\w+/gm;
     bodyNote.match(regex).forEach((teg, i) => {
-      return (obj.tegs[i] = [teg]);
+      return (obj.tegs[i] = teg);
     });
   };
 
@@ -33,26 +31,33 @@ function App() {
     bodyNote.search(/#\w+/gm) == 0
       ? addTegs(newNote)
       : textNotTegs("no tags", newNote);
-
     setNote([...note, newNote]);
     setbodyNote("");
+  };
+
+  const sortedNote = (sort) => {
+    setSearchTeg(sort);
+  };
+
+  const removeNote = (id) => {
+    setNote(note.filter((i) => i.id !== id));
   };
 
   return (
     <div className="App">
       <strong>NOTES APP</strong>
-      <NotesForm addNote={addNewNote} setbodyNote={setbodyNote} />
+      <NotesForm
+        bodyNote={bodyNote}
+        setbodyNote={setbodyNote}
+        addNewNote={addNewNote}
+      />
       <hr></hr>
 
-      {note.length !== 0 ? (
-        <h1 style={{ textAlign: "center" }}>список заметок</h1>
-      ) : (
-        <h1 style={{ textAlign: "center" }}>нет заметок</h1>
-      )}
+      <SearchInput value={searchTeg} note={note} onChange={sortedNote} />
 
       {note.map(({ id, bodyNote, tegs }) => (
         <NoteItem
-          note={note}
+          note={searchTeg}
           setNote={setNote}
           deleteNote={() => removeNote(id)}
           bodyNote={bodyNote}
