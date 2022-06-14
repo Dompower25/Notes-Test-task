@@ -1,13 +1,16 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import NoteItem from "./components/NoteItem";
 import NotesForm from "./components/NotesForm";
 import SearchInput from "./components/SearchInput";
 import "./style/App.css";
+import {useSearch} from "./hooks/useSearch"
+
 
 function App() {
   const [note, setNote] = useState([]);
   const [bodyNote, setbodyNote] = useState("");
   const [searchTeg, setSearchTeg] = useState("");
+  const searchTags = useSearch(note, searchTeg);
 
   const addTegs = (obj) => {
     const regex = /#\w+/gm;
@@ -34,14 +37,7 @@ function App() {
     setNote([...note, newNote]);
     setbodyNote("");
   };
-
-  const searchTags = useMemo(() => {
-    if (searchTeg) {
-      return [...note].filter((note) => note.tegs.includes(searchTeg));
-    }
-    return note;
-  }, [searchTeg, note]);
-
+  
   const sortedNote = (sort) => {
     setSearchTeg(sort);
   };
