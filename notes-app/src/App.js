@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import NoteItem from "./components/NoteItem";
 import NotesForm from "./components/NotesForm";
 import SearchInput from "./components/SearchInput";
@@ -35,6 +35,13 @@ function App() {
     setbodyNote("");
   };
 
+  const searchTags = useMemo(() => {
+    if (searchTeg) {
+      return [...note].filter((note) => note.tegs.includes(searchTeg));
+    }
+    return note;
+  }, [searchTeg, note]);
+
   const sortedNote = (sort) => {
     setSearchTeg(sort);
   };
@@ -52,10 +59,8 @@ function App() {
         addNewNote={addNewNote}
       />
       <hr></hr>
-
       <SearchInput value={searchTeg} note={note} onChange={sortedNote} />
-
-      {note.map(({ id, bodyNote, tegs }) => (
+      {searchTags.map(({ id, bodyNote, tegs }) => (
         <NoteItem
           note={searchTeg}
           setNote={setNote}
