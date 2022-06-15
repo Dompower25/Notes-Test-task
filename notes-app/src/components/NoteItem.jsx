@@ -1,20 +1,20 @@
-import React, {useState} from 'react'
-import MyButton from '../UI/MyButton';
-import st from '../style/NoteItem.module.css'
-
+import React, { useState } from "react";
+import MyButton from "../UI/MyButton";
+import st from "../style/NoteItem.module.css";
 
 function NoteItem({ bodyNote, teg, id, deleteNote, note }) {
   const maxDate = new Date(id);
   const time = maxDate.toLocaleString();
   const [state, setState] = useState(bodyNote);
+  const [editNote, setEditNode] = useState(true);
 
   return (
     <div className="note__box">
       <div className="note__content">
         <div>
           <textarea
-            disabled={true}
-            onChange={(e) => setState(e.target.bodyNote)}
+            disabled={editNote}
+            onChange={(e) => setState(e.target.value)}
             className={st.note}
             value={state}
           ></textarea>
@@ -31,11 +31,24 @@ function NoteItem({ bodyNote, teg, id, deleteNote, note }) {
         </div>
         <div className="note__btn">
           <MyButton onClick={deleteNote}>удалить</MyButton>
-          <MyButton>редактировать</MyButton>
+          <MyButton
+            onClick={() => {
+              setEditNode(false);
+            }}
+          >
+            редактировать
+          </MyButton>
+          <MyButton
+            onClick={() => {
+              setEditNode(true);
+            }}
+          >
+            сохранить
+          </MyButton>
         </div>
       </div>
     </div>
   );
 }
 
-export default NoteItem
+export default NoteItem;
