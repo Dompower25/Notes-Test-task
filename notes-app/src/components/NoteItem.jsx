@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import MyButton from "../UI/MyButton";
 import st from "../style/NoteItem.module.css";
 
-function NoteItem({ bodyNote, teg, id, deleteNote, note, editNotes }) {
-  const maxDate = new Date(id);
+function NoteItem({ bodyNote, teg, deleteNote, note, edit, timeCreate }) {
+  const maxDate = new Date(timeCreate);
   const time = maxDate.toLocaleString();
   const [state, setState] = useState(bodyNote);
   const [editNote, setEditNode] = useState(true);
 
+  
   return (
     <div className="note__box">
       <div className="note__content">
@@ -38,11 +39,7 @@ function NoteItem({ bodyNote, teg, id, deleteNote, note, editNotes }) {
           >
             редактировать
           </MyButton>
-          <MyButton
-            onClick={() => editNotes(id, state)}
-          >
-            сохранить
-          </MyButton>
+          <MyButton onClick={() => { edit(state);  setEditNode(true); }}>сохранить</MyButton>
         </div>
       </div>
     </div>
