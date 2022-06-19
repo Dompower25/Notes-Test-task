@@ -2,26 +2,35 @@ import React, { useState } from "react";
 import MyButton from "../UI/MyButton";
 import st from "../style/NoteItem.module.css";
 
-function NoteItem({ bodyNote, teg, deleteNote, note, edit, timeCreate }) {
+function NoteItem({
+  bodyNote,
+  teg,
+  deleteNote,
+  note,
+  edit,
+  timeCreate,
+}) {
   const maxDate = new Date(timeCreate);
   const time = maxDate.toLocaleString();
   const [state, setState] = useState(bodyNote);
+  const [stateTag, setStateTag] = useState(teg)
   const [editNote, setEditNode] = useState(true);
+  const [editButt, setEditButt] = useState('none');
 
-  
   return (
     <div className="note__box">
       <div className="note__content">
         <div>
           <textarea
             disabled={editNote}
-            onChange={(e) => setState(e.target.value)}
+            onChange={(e) => {
+              setState(e.target.value)}}
             className={st.note}
             value={state}
           ></textarea>
           <div className="tegs__box row">
             <div>
-              {teg.map((t) => (
+              {stateTag.map((t) => (
                 <span className={note === t ? st.blue : "tegSt"} key={t}>
                   {t + " "}
                 </span>
@@ -33,13 +42,26 @@ function NoteItem({ bodyNote, teg, deleteNote, note, edit, timeCreate }) {
         <div className="note__btn">
           <MyButton onClick={deleteNote}>удалить</MyButton>
           <MyButton
+            style={{ display: "inline-block" }}
             onClick={() => {
               setEditNode(false);
+              setEditButt("inline-block");
             }}
           >
             редактировать
           </MyButton>
-          <MyButton onClick={() => { edit(state);  setEditNode(true); }}>сохранить</MyButton>
+          <MyButton
+            style={{ display: editButt, backgroundColor: "green" }}
+            onClick={() => {
+              edit(state);
+              setEditNode(true);
+              setEditButt("none");
+              setStateTag(teg);
+
+            }}
+          >
+            сохранить
+          </MyButton>
         </div>
       </div>
     </div>

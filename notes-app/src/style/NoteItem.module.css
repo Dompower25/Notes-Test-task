@@ -11,10 +11,12 @@
 }
 
 .blue {
-  background-color: cadetblue;
+  background-color: rgb(101, 152, 184, 0.5);
   border-radius: 3px;
 }
 
 .green {
-  background: green;
+  background-color: green;
+  display: no;
 }
+

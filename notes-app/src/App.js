@@ -11,26 +11,23 @@ function App() {
   const [searchTeg, setSearchTeg] = useState("");
   const searchTags = useSearch(note, searchTeg); //хук поиска тегов
   const axios = require("axios");
-
-  console.log(searchTeg);
+  
   useEffect(() => {
     console.log("SYNC");
-    axios
-      .get("https://62ab026ea62365888bd2271d.mockapi.io/Notes/")
-      .then((res) => setNote(res.data));
+    fetchNotes();
   }, []);
 
-  const fetchNotes = () => {
-    console.log("fetch");
-    axios
+  async function fetchNotes() {
+    await axios
       .get("https://62ab026ea62365888bd2271d.mockapi.io/Notes/")
       .then((res) => {
         return setNote(res.data);
       });
-  };
+    console.log("SYNC fetch");
+  }
 
+  //добавление тегов в заметку
   const addTegs = (obj, text) => {
-    //добавление тегов в созданную заметку
     const regex = /#\w+/gm;
     text.match(regex).forEach((teg, i) => {
       return (obj.tegs[i] = teg);
@@ -41,8 +38,8 @@ function App() {
     return (obj.tegs = [text]);
   };
 
+  //создание новой заметки
   const addNewNote = (e) => {
-    //создание новой заметки
     e.preventDefault();
     const newNote = {
       id: Number,
@@ -51,9 +48,10 @@ function App() {
       timeCreate: Date.now(),
     };
 
-    bodyNote.search(/#\w+/gm) == 0
+    bodyNote.search(/#\w+/gm) !== -1
       ? addTegs(newNote, bodyNote)
       : textNotTegs("no tags", newNote);
+    console.log(bodyNote.search(/#\w+/gm));
     let backup = [];
     setNote((note) => {
       backup = note;
@@ -87,8 +85,6 @@ function App() {
 
   //редактирование заметки
   const editNotes = (newText, timeCreate, id) => {
-    console.log(newText);
-
     const newNote = {
       id: id,
       bodyNote: newText,
@@ -96,10 +92,10 @@ function App() {
       timeCreate: timeCreate,
     };
 
-    newText.search(/#\w+/gm) == 0
+    newText.search(/#\w+/gm) !== -1
       ? addTegs(newNote, newText)
       : textNotTegs("no tags", newNote);
-    console.log(newNote);
+
     axios
       .put(`https://62ab026ea62365888bd2271d.mockapi.io/Notes/${id}`, newNote)
       .then((response) => {
@@ -121,7 +117,7 @@ function App() {
       <hr></hr>
       <SearchInput value={searchTeg} note={note} onChange={sortedNote} />
       {searchTags.map(({ bodyNote, id, tegs, timeCreate }) => (
-        <NoteItem //заметка
+        <NoteItem
           edit={(e) => {
             editNotes(e, timeCreate, id);
           }}
