@@ -1,4 +1,1 @@
-<!-- ### Hi there 👋 -->
-
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?size=24&width=600&lines=Hi+👋+welcome+to+domanovich+gitHub+profile!)](https://git.io/typing-svg)
- </br>
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?size=32&duration=2000&color=3FF7D9A1&background=68FFE700&vCenter=true&width=800&lines=Hello!;Welcome+to+Domnavich+GitHub+repository!)](https://git.io/typing-svg)
