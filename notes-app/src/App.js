@@ -9,7 +9,7 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [bodyNote, setbodyNote] = useState("");
   const [searchTag, setSearchTag] = useState("");
-  const noteItems = useSearch(notes, searchTag); //хук поиска тегов
+  const filteredNotes = useSearch(notes, searchTag); //хук поиска тегов
   const axios = require("axios");
 
   useEffect(() => {
@@ -107,7 +107,7 @@ function App() {
       />
       <hr></hr>
       <SearchInput value={searchTag} note={notes} onChange={setSearchTag} />
-      {noteItems.map(({ bodyNote, id, tegs, timeCreate }) => (
+      {filteredNotes.map(({ bodyNote, id, tegs, timeCreate }) => (
         <NoteItem
           edit={(e) => {
             editNotes(e, timeCreate, id);
