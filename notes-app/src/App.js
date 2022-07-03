@@ -8,12 +8,11 @@ import { useSearch } from "./hooks/useSearch";
 function App() {
   const [note, setNote] = useState([]);
   const [bodyNote, setbodyNote] = useState("");
-  const [searchTeg, setSearchTeg] = useState("");
-  const searchTags = useSearch(note, searchTeg); //хук поиска тегов
+  const [searchTag, setSearchTag] = useState("");
+  const searchTags = useSearch(note, searchTag); //хук поиска тегов
   const axios = require("axios");
-  
+
   useEffect(() => {
-    console.log("SYNC");
     fetchNotes();
   }, []);
 
@@ -23,18 +22,15 @@ function App() {
       .then((res) => {
         return setNote(res.data);
       });
-    console.log("SYNC fetch");
   }
 
   //добавление тегов в заметку
-  const addTegs = (obj, text) => {
+  const addTags = (obj, text) => {
     const regex = /#\w+/gm;
-    text.match(regex).forEach((teg, i) => {
-      return (obj.tegs[i] = teg);
-    });
+    obj.tegs = text.match(regex);
   };
 
-  const textNotTegs = (text, obj) => {
+  const textNotTags = (text, obj) => {
     return (obj.tegs = [text]);
   };
 
@@ -49,9 +45,8 @@ function App() {
     };
 
     bodyNote.search(/#\w+/gm) !== -1
-      ? addTegs(newNote, bodyNote)
-      : textNotTegs("no tags", newNote);
-    console.log(bodyNote.search(/#\w+/gm));
+      ? addTags(newNote, bodyNote)
+      : textNotTags("no tags", newNote);
     let backup = [];
     setNote((note) => {
       backup = note;
@@ -68,10 +63,6 @@ function App() {
         setNote(backup);
       });
     setbodyNote("");
-  };
-
-  const sortedNote = (sort) => {
-    setSearchTeg(sort);
   };
 
   //удаление заметки
@@ -93,8 +84,8 @@ function App() {
     };
 
     newText.search(/#\w+/gm) !== -1
-      ? addTegs(newNote, newText)
-      : textNotTegs("no tags", newNote);
+      ? addTags(newNote, newText)
+      : textNotTags("no tags", newNote);
 
     axios
       .put(`https://62ab026ea62365888bd2271d.mockapi.io/Notes/${id}`, newNote)
@@ -115,17 +106,17 @@ function App() {
         addNewNote={addNewNote}
       />
       <hr></hr>
-      <SearchInput value={searchTeg} note={note} onChange={sortedNote} />
+      <SearchInput value={searchTag} note={note} onChange={setSearchTag} />
       {searchTags.map(({ bodyNote, id, tegs, timeCreate }) => (
         <NoteItem
           edit={(e) => {
             editNotes(e, timeCreate, id);
           }}
-          note={searchTeg}
+          note={searchTag}
           deleteNote={() => removeNote(id)}
           bodyNote={bodyNote}
           id={id}
-          teg={tegs}
+          tag={tegs}
           key={timeCreate}
           timeCreate={timeCreate}
         />

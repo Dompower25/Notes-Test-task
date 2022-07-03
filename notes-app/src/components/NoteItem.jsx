@@ -4,7 +4,7 @@ import st from "../style/NoteItem.module.css";
 
 function NoteItem({
   bodyNote,
-  teg,
+  tag,
   deleteNote,
   note,
   edit,
@@ -13,7 +13,7 @@ function NoteItem({
   const maxDate = new Date(timeCreate);
   const time = maxDate.toLocaleString();
   const [state, setState] = useState(bodyNote);
-  const [stateTag, setStateTag] = useState(teg)
+  const [stateTag, setStateTag] = useState(tag)
   const [editNote, setEditNode] = useState(true);
   const [editButt, setEditButt] = useState('none');
 
@@ -56,8 +56,7 @@ function NoteItem({
               edit(state);
               setEditNode(true);
               setEditButt("none");
-              setStateTag(teg);
-
+              setStateTag(tag);
             }}
           >
             сохранить
