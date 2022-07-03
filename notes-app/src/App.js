@@ -6,10 +6,10 @@ import "./style/App.css";
 import { useSearch } from "./hooks/useSearch";
 
 function App() {
-  const [note, setNote] = useState([]);
+  const [notes, setNotes] = useState([]);
   const [bodyNote, setbodyNote] = useState("");
   const [searchTag, setSearchTag] = useState("");
-  const searchTags = useSearch(note, searchTag); //хук поиска тегов
+  const noteItems = useSearch(notes, searchTag); //хук поиска тегов
   const axios = require("axios");
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function App() {
     await axios
       .get("https://62ab026ea62365888bd2271d.mockapi.io/Notes/")
       .then((res) => {
-        return setNote(res.data);
+        return setNotes(res.data);
       });
   }
 
@@ -48,7 +48,7 @@ function App() {
       ? addTags(newNote, bodyNote)
       : textNotTags("no tags", newNote);
     let backup = [];
-    setNote((note) => {
+    setNotes((note) => {
       backup = note;
       return [...note, newNote];
     });
@@ -60,14 +60,14 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        setNote(backup);
+        setNotes(backup);
       });
     setbodyNote("");
   };
 
   //удаление заметки
   const removeNote = (id) => {
-    setNote(note.filter((i) => i.id !== id));
+    setNotes(notes.filter((i) => i.id !== id));
     axios
       .delete(`https://62ab026ea62365888bd2271d.mockapi.io/Notes/${id}`)
       .then((response) => console.log("Delete note", response.data))
@@ -106,8 +106,8 @@ function App() {
         addNewNote={addNewNote}
       />
       <hr></hr>
-      <SearchInput value={searchTag} note={note} onChange={setSearchTag} />
-      {searchTags.map(({ bodyNote, id, tegs, timeCreate }) => (
+      <SearchInput value={searchTag} note={notes} onChange={setSearchTag} />
+      {noteItems.map(({ bodyNote, id, tegs, timeCreate }) => (
         <NoteItem
           edit={(e) => {
             editNotes(e, timeCreate, id);
