@@ -99,7 +99,7 @@ function App() {
 
   return (
     <div className="App">
-      <strong>NOTES APP</strong>
+      <h1>NOTES APP</h1>
       <NotesForm //форма создания заметки
         bodyNote={bodyNote}
         setbodyNote={setbodyNote}

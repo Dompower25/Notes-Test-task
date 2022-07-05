@@ -24,7 +24,8 @@ function NoteItem({
           <textarea
             disabled={editNote}
             onChange={(e) => {
-              setState(e.target.value)}}
+              setState(e.target.value);
+            }}
             className={st.note}
             value={state}
           ></textarea>

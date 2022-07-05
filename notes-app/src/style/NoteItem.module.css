@@ -2,11 +2,11 @@
     width: 100%;
     min-height: 70px;
     resize: none;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid rgb(129, 127, 127);
+    border-radius: 5px;
     padding: 3px 7px;
     font-size: 18px;
-    margin: 10px auto;
+    margin: 0 auto;
     overflow: hidden;
 }
 
@@ -19,4 +19,3 @@
   background-color: green;
   display: no;
 }
-

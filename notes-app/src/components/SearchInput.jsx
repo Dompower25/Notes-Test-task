@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchInput = ({ note, onChange, value }) => {
   return (
-    <div className="row">
+    <div className="row search__line">
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -10,9 +10,9 @@ const SearchInput = ({ note, onChange, value }) => {
         placeholder="search #tag"
       ></input>
       {note.length !== 0 ? (
-        <h1 style={{ textAlign: "center" }}>список заметок</h1>
+        <h2 style={{ textAlign: "center" }}>список заметок</h2>
       ) : (
-        <h1 style={{ textAlign: "center" }}>нет заметок</h1>
+        <h2 style={{ textAlign: "center" }}>нет заметок</h2>
       )}
     </div>
   );
