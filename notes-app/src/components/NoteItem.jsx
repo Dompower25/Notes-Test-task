@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MyButton from "../UI/MyButton";
-import st from "../style/NoteItem.module.css";
+import st from "../style/NoteItem.module.scss";
 
 function NoteItem({
   bodyNote,

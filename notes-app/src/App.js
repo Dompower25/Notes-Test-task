@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NoteItem from "./components/NoteItem";
 import NotesForm from "./components/NotesForm";
 import SearchInput from "./components/SearchInput";
-import "./style/App.css";
+import "./style/App.scss";
 import { useSearch } from "./hooks/useSearch";
 
 function App() {

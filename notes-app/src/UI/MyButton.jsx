@@ -1,5 +1,5 @@
 import React from 'react'
-import sc from './MyButton.module.css'
+import sc from './MyButton.module.scss'
 
 const MyButton = ({children, ...props}) => {
   return (
