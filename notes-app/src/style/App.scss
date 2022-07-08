@@ -1,132 +1,34 @@
-/*Обнуление*/
-/*----------------------------------------------------------------------------*/
-* {
-  padding: 0;
-  margin: 0;
-  /* обнуление всех отступор на странице и всех тегов */
-  border: 0;
-}
+@import "nullStyle.scss";
 
 /*----------------------------------------------------------------------------*/
-*,
-*:before,
-*:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  /* изменение подсчета ширины блока для удобства верстания */
-  box-sizing: border-box;
-}
-
-/*----------------------------------------------------------------------------*/
-:focus,
-:active {
-  outline: none;
-}
-
-/* уберает линии обводки у некоторых браузеров */
-a:focus,
-a:active {
-  outline: none;
-}
-
-/*----------------------------------------------------------------------------*/
-nav,
-footer,
-header,
-aside {
-  display: block;
-}
-
-/* переводит в блочный тип */
-/*----------------------------------------------------------------------------*/
-html,
 body {
-  height: 100%;
-  width: 100%;
-  font-size: 100%;
-  line-height: 1;
-  /* уравнивает поведение шрифтов и элементов для разных браузеров (запрещает самовольное увеличение шрифтов напр. Iphone)  */
-  font-size: 14px;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-/*----------------------------------------------------------------------------*/
-input,
-button,
-textarea {
-  font-family: inherit;
-}
-
-/* наследование семейства шрифтов */
-/*----------------------------------------------------------------------------*/
-input::-ms-clear {
-  display: none;
-}
-
-button {
-  cursor: pointer;
-}
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-a,
-a:visited {
-  text-decoration: none;
-}
-
-/* коротко-уберае некоторые особенности в разных браузеров */
-a:hover {
-  text-decoration: none;
-}
-
-ul li {
-  list-style: none;
-}
-
-img {
-  vertical-align: top;
-}
-
-/*----------------------------------------------------------------------------*/
-h1 {
-  font-size: 28px;
-    text-shadow: 1px 1px 0 rgb(129, 127, 127),
-    1px -1px 0 rgb(129, 127, 127),
-    -1px 1px 0 rgb(129, 127, 127),
-    -1px -1px 0 rgb(129, 127, 127);
-    color: white;
-    transition: all 1s;
-}
-h2 {
-  font-size: 20px;
-}
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: 400;
-}
-
-/*----------------------------------------------------------------------------*/
-
-*,
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 200;
+  background: url('../UI/image/1627093201_21-kartinkin-com-p-fon-melovaya-doska-zelenaya-krasivo-21.jpg') no-repeat fixed
 }
 
 .App {
-  width: 50%;
+  max-width: 700px;
   margin: 20px auto;
 
 }
+
+@media (max-width: 730px) {
+  .App {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 570px) {
+  .App {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 370px) {
+  .App {
+    max-width: none;
+  }
+}
+
 
 hr {
   margin: 15px 0;
@@ -157,7 +59,7 @@ hr {
 }
 
 .tegSt {
-  color: rgb(50, 50, 223);
+  color: rgb(13, 4, 52);
 }
 
 .tegs__box {
@@ -179,8 +81,9 @@ hr {
 
 .note__content {
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
   margin: 20px 0;
   padding: 10px;
 }
+

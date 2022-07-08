@@ -1,5 +1,5 @@
 .button {
-  width: 150px;
+  min-width: 33%;
   height: 38px;
   margin: 2px;
   padding-bottom: 3px;
@@ -7,11 +7,13 @@
   border: 1px solid rgba(110, 121, 128, .8);
   border-top-color: rgba(0, 0, 0, .3);
   border-radius: 5px;
-  background: rgb(206, 220, 231) linear-gradient(rgb(206, 220, 231), rgb(131, 206, 210));
+  background: rgb(9, 59, 45) linear-gradient(rgb(113, 213, 160), rgba(1, 5, 5, 0.13));
   box-shadow: 0 -1px rgba(37, 66, 84, 0.9) inset,
   0 1px rgba(255, 255, 255, .5) inset;
+  color: beige;
+  &:hover {
+    background: linear-gradient(#045630, rgb(8, 146, 28));
+  }
 }
 
-.button:hover {
-    background: linear-gradient(#d2dfea, rgb(88, 136, 173));
-}
+
