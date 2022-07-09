@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchInput = ({ note, onChange, value }) => {
   return (
-    <div className="row search__line">
+    <div className="row search__line row__mobile">
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}

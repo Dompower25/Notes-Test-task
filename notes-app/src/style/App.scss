@@ -11,6 +11,11 @@ body {
 
 }
 
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 730px) {
   .App {
     max-width: 500px;
@@ -21,13 +26,20 @@ body {
   .App {
     max-width: 300px;
   }
+.row {
+  display: block;
+  margin: 3px;
+}
 }
 
 @media (max-width: 370px) {
   .App {
     max-width: none;
+    margin: 0 4px;
   }
 }
+
+
 
 
 hr {
@@ -35,10 +47,7 @@ hr {
   border: 1px;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-}
+
 
 .row_column {
   display: flex;
